@@ -31,7 +31,7 @@ const byte switchCols = 6;
 bool lockOn = true;
 
 //Defines if the locks should latch open when puzzle solved NOTE: if TRUE the puzzlee needs resetting manually
-bool latching = false;
+bool latching = true;
 
 // Set puzzle solution for stage one
 int solution1[switchRows][switchCols]={
@@ -53,11 +53,11 @@ int solution2[switchRows][switchCols]={
 
 // Define pins for switch matrix
 byte switchPins[switchRows][switchCols] = {
-{23,24,25,26,27,28},
-{29,30,31,32,33,34},
-{35,36,37,38,39,40},
-{41,42,43,44,45,46},
-{47,48,49,50,51,52}
+{28,27,26,25,24,23},
+{34,33,32,31,30,29},
+{40,39,38,37,36,35},
+{46,45,44,43,42,41},
+{52,51,50,49,48,47}
 };
 
 /*
@@ -153,6 +153,9 @@ void resetme(){
       pinMode(switchPins[i][j],INPUT_PULLUP);
     }
   }
+  pinMode(lock1, OUTPUT);
+  pinMode(lock2, OUTPUT);
   digitalWrite(lock1, lockOn);
   digitalWrite(lock2, lockOn);
+  delay(100);
 }
